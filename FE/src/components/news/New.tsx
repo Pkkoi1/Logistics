@@ -91,7 +91,7 @@ const New: React.FC = () => {
       <div className="mx-auto max-w-7xl">
         <div className="text-center mb-12">
           <a
-            href="#"
+            href="/news"
             className="text-xl text-gray-800 mb-4 hover:text-[#19b7f9]"
           >
             TIN TỨC KHUYẾN MÃI
