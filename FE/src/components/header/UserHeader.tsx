@@ -18,7 +18,7 @@ const UserHeader: React.FC = () => {
       { label: "Thông kê", href: "/#statistic", id: "statistic" },
       { label: "Tin tức", href: "/news", id: "news" },
       { label: "Liên hệ", href: "/#contact", id: "contact" },
-      { label: "Báo giá", href: "/#quote", id: "quote" },
+      { label: "Báo giá", href: "/pricing", id: "pricing", isPage: true },
     ],
     []
   );
@@ -67,7 +67,9 @@ const UserHeader: React.FC = () => {
       }
 
       // Check which section is currently in view
-      const sections = navigationItems.map((item) => item.id);
+      const sections = navigationItems
+        .filter((item) => !item?.isPage)
+        .map((item) => item.id);
       let currentSection = "";
       let closestSection = "";
       let minDistance = Infinity;
@@ -145,6 +147,12 @@ const UserHeader: React.FC = () => {
   }, [location.pathname, location.hash]);
 
   const handleNavigation = (item: (typeof navigationItems)[0]) => {
+    // If it's a page route (like news), navigate directly
+    if (item.isPage) {
+      navigate(item.href);
+      return;
+    }
+
     // If we're not on home page, navigate to home with hash
     if (location.pathname !== "/") {
       navigate(`/#${item.id}`);

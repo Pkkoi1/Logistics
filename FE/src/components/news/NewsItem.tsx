@@ -1,5 +1,6 @@
 import { ArrowRight } from "lucide-react";
 import React from "react";
+import { Link } from "react-router-dom";
 
 export interface NewsItemProps {
   id: string;
@@ -21,7 +22,7 @@ const NewsItem: React.FC<NewsItemProps> = ({
   return (
     <div className="flex flex-col h-full">
       {/* Image with date badge */}
-      <div className="relative mb-4 overflow-hidden rounded-lg">
+      <div className="relative mb-4 overflow-hidden">
         <img
           src={image || "/placeholder.svg"}
           alt={title}
@@ -36,15 +37,15 @@ const NewsItem: React.FC<NewsItemProps> = ({
       {/* Content */}
       <div className="flex-1 flex flex-col">
         <h3 className="text-lg font-semibold text-gray-800 mb-2 line-clamp-2 hover:text-[#19b7f9]">
-          <a href={`/news/${slug}`}>{title}</a>
+          <Link to={`/news/${slug}`}>{title}</Link>
         </h3>
         <p className="text-gray-600 mb-4 line-clamp-3 flex-1">{excerpt}</p>
-        <a
-          href={`/news/${slug}`}
-          className="text-[##19b7f9] font-medium inline-flex items-center hover:text-[#19b7f9] transition-colors"
+        <Link
+          to={`/news/${slug}`}
+          className="text-[#19b7f9] font-medium inline-flex items-center hover:text-[#19b7f9] transition-colors"
         >
           Xem thêm <ArrowRight className="ml-1 w-4 h-4" />
-        </a>
+        </Link>
       </div>
     </div>
   );
