@@ -65,6 +65,7 @@ const Statistic: React.FC = () => {
 
   return (
     <section
+      id="statistic"
       className="py-16 px-4 lg:px-[100px] relative overflow-hidden h-screen bg-cover bg-center bg-no-repeat"
       style={{
         backgroundImage: "url('/data_bg.png')",
@@ -78,9 +79,7 @@ const Statistic: React.FC = () => {
       <div className="mx-auto max-w-full relative z-10">
         {/* Section Title */}
         <div className="text-center mb-16">
-          <h2 className="text-xl text-white mb-4">
-            SỐ LIỆU THỐNG KÊ
-          </h2>
+          <h2 className="text-xl text-white mb-4">SỐ LIỆU THỐNG KÊ</h2>
           <div className="w-16 h-1 bg-yellow-400 mx-auto"></div>
         </div>
 

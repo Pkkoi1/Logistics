@@ -87,7 +87,7 @@ const New: React.FC = () => {
   };
 
   return (
-    <section className="py-16 px-4 bg-white">
+    <section id="news" className="py-16 px-4 bg-white">
       <div className="mx-auto max-w-7xl">
         <div className="text-center mb-12">
           <a

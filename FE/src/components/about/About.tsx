@@ -3,7 +3,10 @@ import React from "react";
 const About: React.FC = () => {
   return (
     <div className="">
-      <section className="bg-[url('map.png')] bg-contain bg-center bg-no-repeat py-16 px-4">
+      <section
+        id="about"
+        className="bg-[url('map.png')] bg-contain bg-center bg-no-repeat py-16 px-4"
+      >
         <div className="mx-auto max-w-7xl">
           {/* Section Title */}
           <div className="text-center mb-12">

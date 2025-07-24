@@ -30,6 +30,7 @@ const Reason: React.FC = () => {
 
   return (
     <section
+      id="reason"
       className="pt-16 px-4 bg-cover bg-center bg-no-repeat"
       style={{
         backgroundImage: "url('choose_bg.png')",

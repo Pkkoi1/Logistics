@@ -3,7 +3,7 @@ import { CheckCircle } from "lucide-react";
 
 const MobileApp: React.FC = () => {
   return (
-    <section className="px-4 -mt-16 bg-gray-100">
+    <section id="mobile-app" className="px-4 -mt-16 bg-gray-100">
       <div className="mx-auto max-w-7xl">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           {/* Left side - Phone with floating animation */}

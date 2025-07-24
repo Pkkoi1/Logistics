@@ -3,7 +3,7 @@ import ServiceIcon from "./ServiceIcon";
 
 const Service: React.FC = () => {
   return (
-    <section className="py-16 bg-gray-50">
+    <section id="service" className="py-16 bg-gray-50">
       <div className="max-w-screen">
         <div className="bg-whitep-8">
           {/* Section Title */}
@@ -97,7 +97,7 @@ const Service: React.FC = () => {
                     <ServiceIcon
                       src="/icon_service_3.webp"
                       alt="Ship Icon"
-                        className="max-w-full h-auto"
+                      className="max-w-full h-auto"
                     />
                   </div>
                   <h3 className="text-xl font-semibold text-gray-800">

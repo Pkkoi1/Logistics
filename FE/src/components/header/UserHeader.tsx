@@ -1,27 +1,69 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useMemo } from "react";
 
 const UserHeader: React.FC = () => {
   const [isScrolled, setIsScrolled] = useState(false);
+  const [activeSection, setActiveSection] = useState("");
 
-  const navigationItems = [
-    { label: "Về chúng tôi", href: "#" },
-    { label: "Dịch vụ", href: "#" },
-    { label: "Vận chuyển", href: "#" },
-    { label: "Thông kê", href: "#" },
-    { label: "Tin tức", href: "#" },
-    { label: "Liên hệ", href: "#" },
-    { label: "Báo giá", href: "#" },
-  ];
+  const navigationItems = useMemo(
+    () => [
+      { label: "Về chúng tôi", href: "#about", id: "about" },
+      { label: "Dịch vụ", href: "#service", id: "service" },
+      { label: "Vận chuyển", href: "#transport", id: "transport" },
+      { label: "Thông kê", href: "#statistic", id: "statistic" },
+      { label: "Tin tức", href: "#news", id: "news" },
+      { label: "Liên hệ", href: "#contact", id: "contact" },
+      { label: "Báo giá", href: "#quote", id: "quote" },
+    ],
+    []
+  );
 
   useEffect(() => {
     const handleScroll = () => {
       const scrollTop = window.scrollY;
       setIsScrolled(scrollTop > 50);
+
+      // Check which section is currently in view
+      const sections = navigationItems.map((item) => item.id);
+      let currentSection = "";
+
+      // Find the section that is most visible in the viewport
+      for (const section of sections) {
+        const element = document.getElementById(section);
+        if (element) {
+          const rect = element.getBoundingClientRect();
+          const headerHeight = 80;
+          // Check if section is in the top part of the viewport
+          if (rect.top <= headerHeight && rect.bottom > headerHeight) {
+            currentSection = section;
+            break;
+          }
+        }
+      }
+
+      if (currentSection) {
+        setActiveSection(currentSection);
+      }
     };
 
     window.addEventListener("scroll", handleScroll);
+    // Initial call to set active section on page load
+    handleScroll();
+
     return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  }, [navigationItems]);
+
+  const scrollToSection = (sectionId: string) => {
+    const element = document.getElementById(sectionId);
+    if (element) {
+      const headerHeight = 80; // Approximate header height
+      const targetPosition = element.offsetTop - headerHeight;
+
+      window.scrollTo({
+        top: targetPosition,
+        behavior: "smooth",
+      });
+    }
+  };
 
   return (
     <header
@@ -40,14 +82,20 @@ const UserHeader: React.FC = () => {
           <ul className="flex items-center space-x-8">
             {navigationItems.map((item, index) => (
               <li key={index}>
-                <a
-                  href={item.href}
+                <button
+                  onClick={() => scrollToSection(item.id)}
                   className={`text-sm font-medium transition-colors hover:text-blue-300 ${
-                    isScrolled ? "text-gray-800" : "text-white"
+                    activeSection === item.id
+                      ? isScrolled
+                        ? "text-blue-500"
+                        : "text-blue-300"
+                      : isScrolled
+                      ? "text-gray-800"
+                      : "text-white"
                   }`}
                 >
                   {item.label}
-                </a>
+                </button>
               </li>
             ))}
           </ul>

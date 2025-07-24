@@ -4,7 +4,7 @@ import Map from "../map/Map";
 
 const Contact: React.FC = () => {
   return (
-    <section className="">
+    <section id="contact" className="">
       <div
         className="mx-auto max-w-full"
         style={{ backgroundImage: "url('sky.jpg')" }}
